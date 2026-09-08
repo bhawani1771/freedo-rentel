@@ -1,0 +1,88 @@
+/* Container jo card ko screen ke center me set karega */
+.table-container {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 100vh !important;
+  padding: 30px 16px !important;
+  background: #F1F5F9 !important; /* Form jaisa same soft grey background */
+  font-family: 'Poppins', sans-serif !important;
+  box-sizing: border-box !important;
+}
+
+/* Heading */
+.table-container h2 {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  margin: 0 0 16px 0 !important;
+  letter-spacing: -0.3px !important;
+  text-align: center !important;
+}
+
+/* Empty data text */
+.table-container p {
+  font-size: 13px !important;
+  color: #64748B !important;
+  background: #FFFFFF !important;
+  padding: 16px 24px !important;
+  border-radius: 10px !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Main Table Styling - Form Card jaisa design */
+table {
+  width: 100% !important;
+  max-width: 720px !important;
+  border-collapse: collapse !important;
+  background: #FFFFFF !important;
+  border-radius: 14px !important;
+  border: 1px solid #E2E8F0 !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06) !important;
+  overflow: hidden !important;
+}
+
+/* Table Header */
+thead {
+  background-color: #00D7D0 !important; /* Freedo teal */
+}
+
+th {
+  padding: 11px 14px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  color: #FFFFFF !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.6px !important;
+  text-align: left !important;
+  border: none !important;
+}
+
+/* Table Data Cells */
+td {
+  padding: 10px 14px !important;
+  font-size: 13px !important;
+  color: #1E293B !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* Alternate Row Colors */
+tbody tr:nth-child(even) {
+  background-color: #F8FAFC !important;
+}
+
+/* Hover effect rows par */
+tbody tr:hover {
+  background-color: rgba(0, 215, 208, 0.06) !important;
+  transition: background-color 0.15s ease !important;
+}
+
+/* Last row ka border clean karne ke liye */
+tbody tr:last-child td {
+  border-bottom: none !important;
+}
