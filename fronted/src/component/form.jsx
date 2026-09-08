@@ -32,7 +32,7 @@ const navigate = useNavigate();
     
 
     try {
-      const response = await fetch('http://localhost:5000/api/users', {
+      const response = await fetch('https://freedo-rentel-stma.vercel.app/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
