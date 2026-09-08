@@ -15,12 +15,24 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// MongoDB Atlas Connection
-const MONGO_URI = process.env.MONGO_URI;
+// Serverless MongoDB Connection Caching
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected) return;
+  try {
+    const db = await mongoose.connect(process.env.MONGO_URI);
+    isConnected = db.connections[0].readyState === 1;
+    console.log('✅ MongoDB Atlas Cloud Database Connected Successfully! 🍃');
+  } catch (err) {
+    console.error('❌ Database Connection Error:', err.message);
+  }
+};
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log('✅ MongoDB Atlas Cloud Database Connected Successfully! 🍃'))
-  .catch((err) => console.error('❌ Database Connection Error:', err.message));
+// Database connection middleware for all incoming requests
+app.use(async (req, res, next) => {
+  await connectDB();
+  next();
+});
 
 // Test Route
 app.get('/', (req, res) => {
@@ -191,8 +203,13 @@ app.post('/api/orders', async (req, res) => {
   }
 });
 
-// Start Server
+// Local Development Server Listener
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+  });
+}
+
+// Export app for Vercel Serverless Functions
+module.exports = app;
